@@ -1,55 +1,35 @@
-"use client"
-import Ipone1 from "@/assets/images/iphone_01.png";
-import Ipone2 from "@/assets/images/iphone_02.png";
-import Ipone3 from "@/assets/images/iphone_03.png";
-import Ipone4 from "@/assets/images/iphone_04.png";
-import Ipone5 from "@/assets/images/iphone_05.png";
+"use client";
 import Image from "next/image";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
+const basePath = "/Apple-Clone-"; // اسم الريبو على GitHub Pages
+
+const images = [
+  { src: `${basePath}/assets/images/iphone_01.png`, alt: "ip1" },
+  { src: `${basePath}/assets/images/iphone_02.png`, alt: "ip2" },
+  { src: `${basePath}/assets/images/iphone_03.png`, alt: "ip3" },
+  { src: `${basePath}/assets/images/iphone_04.png`, alt: "ip4" },
+  { src: `${basePath}/assets/images/iphone_05.png`, alt: "ip5" },
+];
 
 export const PhoneImge = () => {
-    return (
-        <section className="overflow-x-clip my-4">
-        <div className="container mx-auto text-center">
-            <ParallaxProvider>
-                <div className="flex gap-5 justify-center items-center max-w-[1600px] mx-auto">
-                    <Parallax speed={10}>
-                        <div className="flex gap-5  justify-center items-center">
-                            <Image src={Ipone1} alt="ip1" width={250} />
-                        </div>
-                    </Parallax>
-    
-                    <Parallax speed={20}>
-                        <div className="flex gap-5 justify-center items-center">
-                            <Image src={Ipone2} alt="ip2" width={250} />
-                        </div>
-                    </Parallax>
-    
-                    <Parallax speed={10}>
-                        <div className="flex gap-5 justify-center items-center">
-                            <Image src={Ipone3} alt="ip3" width={250} />
-                        </div>
-                    </Parallax>
-    
-                    <Parallax speed={20}>
-                        <div className="flex gap-5 justify-center items-center">
-                            <Image src={Ipone4} alt="ip4" width={250} />
-                        </div>
-                    </Parallax>
-    
-                    <Parallax speed={10}>
-                        <div className="flex gap-5 justify-center items-center">
-                            <Image src={Ipone5} alt="ip5" width={250} />
-                        </div>
-                    </Parallax>
+  return (
+    <section className="overflow-x-clip my-4">
+      <div className="container mx-auto text-center">
+        <ParallaxProvider>
+          <div className="flex gap-5 justify-center items-center max-w-[1600px] mx-auto">
+            {images.map((image, index) => (
+              <Parallax speed={index % 2 === 0 ? 10 : 20} key={index}>
+                <div className="flex gap-5 justify-center items-center">
+                  <Image src={image.src} alt={image.alt} width={250} />
                 </div>
-            </ParallaxProvider>
-        </div>
+              </Parallax>
+            ))}
+          </div>
+        </ParallaxProvider>
+      </div>
     </section>
-    
-    
-    )
+  );
+};
 
-}
-export default PhoneImge
+export default PhoneImge;
